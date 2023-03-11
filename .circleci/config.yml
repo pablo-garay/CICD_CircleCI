@@ -37,6 +37,8 @@ jobs:
       - setup_remote_docker
       - checkout
       - docker/check
+          docker-password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+          docker-username: mydockerhub-user
       - docker/build:
           image: my_repo/built-image
       - docker/push:
