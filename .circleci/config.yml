@@ -37,10 +37,10 @@ jobs:
       - setup_remote_docker
       - checkout
       - docker/build:
-          image: my_repo/orb-test
+          image: cimg/python
       - docker/push:
           digest-path: /tmp/digest.txt
-          image: my_repo/orb-test
+          image: cimg/python
       - run:
           command: |
             echo "Digest is: $(</tmp/digest.txt
