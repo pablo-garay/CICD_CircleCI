@@ -8,4 +8,4 @@ COPY source/hello_world.py /opt/hello_word/
 
 EXPOSE 80
 
-RUN [ "./hello_world.py" ]
+RUN [ "python ./hello_world.py" ]
