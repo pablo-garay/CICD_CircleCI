@@ -36,9 +36,9 @@ jobs:
           at: ~/project
       - setup_remote_docker
       - checkout
-      - docker/check
-          docker-password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-          docker-username: mydockerhub-user
+      - docker/check:
+          docker-username: DOCKERHUB_LOGIN  # DOCKER_LOGIN is the default value, if it exists, it automatically would be used.
+          docker-password: DOCKERHUB_PASSWORD  # DOCKER_PASSWORD is the default value
       - docker/build:
           image: my_repo/built-image
       - docker/push:
