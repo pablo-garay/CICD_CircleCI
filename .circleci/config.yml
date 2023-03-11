@@ -36,9 +36,6 @@ jobs:
           at: ~/project
       - setup_remote_docker
       - checkout
-      - docker/check
-          docker-username: mydockerhub-user
-          docker-password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
       - docker/build:
           image: my_repo/orb-test
       - docker/push:
