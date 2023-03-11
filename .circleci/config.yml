@@ -38,12 +38,12 @@ jobs:
       - checkout
       - docker/check
       - docker/build:
-          image: my_repo/built-image
+          image: pagaray-repo/built-image
           registry: docker.io
           tag: prod 
       - docker/push:
           digest-path: /tmp/digest.txt
-          image: my_repo/built-image
+          image: pagaray-repo/built-image
           registry: docker.io
           tag: prod
       - run:
