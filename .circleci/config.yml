@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   python: circleci/python@2.0.3
-  heroku: circleci/heroku@1.2.6
+  docker: circleci/docker@x.y.z
 
 jobs:
   hello-world-job:
@@ -30,12 +30,21 @@ jobs:
             - .
 
   deploy: # this can be any name you choose
-    executor: python/default
+    executor: docker/docker
     steps:
       - attach_workspace:
           at: ~/project
-      - heroku/deploy-via-git:
-          force: true # force push when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
+      - setup_remote_docker
+      - checkout
+      - docker/check
+      - docker/build:
+          image: my_repo/orb-test
+      - docker/push:
+          digest-path: /tmp/digest.txt
+          image: my_repo/orb-test
+      - run:
+          command: |
+            echo "Digest is: $(</tmp/digest.txt
 
 workflows:
   my-docker-workflow:
