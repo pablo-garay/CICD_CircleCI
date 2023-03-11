@@ -37,10 +37,10 @@ jobs:
       - setup_remote_docker
       - checkout
       - docker/build:
-          image: cimg/python
+          image: my_repo/built-image
       - docker/push:
           digest-path: /tmp/digest.txt
-          image: cimg/python
+          image: my_repo/built-image
       - run:
           command: |
             echo "Digest is: $(</tmp/digest.txt
