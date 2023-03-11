@@ -35,13 +35,13 @@ jobs:
       - attach_workspace:
           at: ~/project
       - setup_remote_docker
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
       - checkout
       - docker/check
       - docker/build:
           image: my_repo/orb-test
+          auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
       - docker/push:
           digest-path: /tmp/digest.txt
           image: my_repo/orb-test
