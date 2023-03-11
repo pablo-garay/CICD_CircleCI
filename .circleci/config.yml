@@ -36,6 +36,7 @@ jobs:
           at: ~/project
       - setup_remote_docker
       - checkout
+      - docker/check
       - docker/build:
           image: my_repo/built-image
       - docker/push:
