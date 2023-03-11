@@ -35,6 +35,9 @@ jobs:
       - attach_workspace:
           at: ~/project
       - setup_remote_docker
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
       - checkout
       - docker/check
       - docker/build:
