@@ -55,6 +55,7 @@ jobs:
           destination: artifact-digest-file
       - store_artifacts:
           path: /tmp/build-logs
+          destination: artifact-build-logs
 
 workflows:
   my-docker-workflow:
