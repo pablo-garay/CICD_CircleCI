@@ -19,12 +19,6 @@ jobs:
     parallelism: 4
     executor: python/default
     steps:  
-      - restore_cache:
-          keys:
-            - &source-cache source-v1-{{ .Branch }}-{{ .Revision }}
-            - source-v1-{{ .Branch }}-
-            - source-v1-
-
       - checkout
 
       - save_cache:
