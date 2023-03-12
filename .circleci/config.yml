@@ -21,9 +21,9 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - &source-cache2 source-v1-{{ .Branch }}-{{ .Revision }}
-            - source-v1-{{ .Branch }}-
-            - source-v1-
+            - &source-cache2 source-v2-{{ .Branch }}-{{ .Revision }}
+            - source-v2-{{ .Branch }}-
+            - source-v2-
 
       - checkout
 
