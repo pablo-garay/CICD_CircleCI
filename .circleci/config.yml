@@ -18,13 +18,7 @@ jobs:
   build_and_test: # this can be any name you choose
     parallelism: 4
     executor: python/default
-    steps:
-      - restore_cache:
-          keys:
-            - &source-cache source-v1-{{ .Branch }}-{{ .Revision }}
-            - source-v1-{{ .Branch }}-
-            - source-v1-
-            
+    steps:  
       - checkout
       - python/install-packages:
           pkg-manager: pip
@@ -39,9 +33,7 @@ jobs:
       - save_cache:
           key: *source-cache
           paths:
-            - Dockerfile
-            - source
-            - tests
+            - ".git"
 
   deploy: # this can be any name you choose
     executor: docker/docker
