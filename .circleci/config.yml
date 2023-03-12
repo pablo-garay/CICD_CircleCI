@@ -29,11 +29,6 @@ jobs:
           root: ~/project
           paths:
             - .
-            
-      - save_cache:
-          key: *source-cache
-          paths:
-            - ".git"
 
   deploy: # this can be any name you choose
     executor: docker/docker
