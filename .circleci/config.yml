@@ -19,6 +19,12 @@ jobs:
     parallelism: 4
     executor: python/default
     steps:
+      - restore_cache:
+          keys:
+            - &source-cache source-v1-{{ .Branch }}-{{ .Revision }}
+            - source-v1-{{ .Branch }}-
+            - source-v1-
+            
       - checkout
       - python/install-packages:
           pkg-manager: pip
@@ -29,6 +35,13 @@ jobs:
           root: ~/project
           paths:
             - .
+            
+      - save_cache:
+          key: *source-cache
+          paths:
+            - Dockerfile
+            - source
+            - tests
 
   deploy: # this can be any name you choose
     executor: docker/docker
@@ -55,7 +68,7 @@ jobs:
           destination: artifact-digest-file
       - store_artifacts:
           path: /tmp/build-logs
-          destination: artifact-build-logs
+          destination: build-logs
 
 workflows:
   my-docker-workflow:
