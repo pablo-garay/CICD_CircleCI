@@ -38,12 +38,12 @@ jobs:
       - checkout
       - docker/check
       - docker/build:
-          image: palenq/pagaray-repo/built-image
+          image: palenq/built-image
           registry: docker.io
           tag: prod 
       - docker/push:
           digest-path: /tmp/digest.txt
-          image: palenq/pagaray-repo/built-image
+          image: palenq/built-image
           registry: docker.io
           tag: prod
       - run:
