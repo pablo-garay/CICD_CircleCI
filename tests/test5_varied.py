@@ -2,7 +2,7 @@ import unittest
 import math
 import re
 
-class SimpleTest(unittest.TestCase):
+class TestVariety(unittest.TestCase):
    def test1(self):
       self.assertNotAlmostEqual(10.0/3,3)
    def test2(self):
