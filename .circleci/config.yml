@@ -48,7 +48,7 @@ jobs:
           tag: prod
       - run:
           command: |
-            echo "Digest is: $(</tmp/digest.txt
+            echo "Digest is: $(</tmp/digest.txt)"
 
 workflows:
   my-docker-workflow:
