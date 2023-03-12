@@ -22,7 +22,7 @@ jobs:
       - checkout
 
       - save_cache:
-          key: *source-cache
+          key: source-cache
           paths:
             - ".git"
       - python/install-packages:
