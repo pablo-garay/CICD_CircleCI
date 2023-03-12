@@ -16,6 +16,7 @@ jobs:
       - run: echo "hello world" # run the `echo` command
 
   build_and_test: # this can be any name you choose
+    parallelism: 4
     executor: python/default
     steps:
       - checkout
