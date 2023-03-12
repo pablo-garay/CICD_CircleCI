@@ -1,6 +1,6 @@
 import unittest
 
-class Testing(unittest.TestCase):
+class TestLangTypes(unittest.TestCase):
     def test_string(self):
         a = 'some'
         b = 'some'
