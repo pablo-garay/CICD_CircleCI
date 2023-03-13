@@ -13,4 +13,4 @@ EXPOSE 80
 RUN ["chmod","+x","./hello_world.py"]
 RUN ["chmod","+x","/tmp/chat_with_chatgpt.py"]
 RUN [ "./hello_world.py" ]
-RUN [ "/tmp/chat_with_chatgpt.py | tee /tmp/cicd-logs/chatgpt_response.txt" ]
+RUN [ "/tmp/chat_with_chatgpt.py" ]
