@@ -17,7 +17,7 @@ try:
   )
   
   print("Q: " + gpt_prompt)
-  print("A: " + strip(response['choices'][0]['text']))
+  print("A: " + response['choices'][0]['text'].strip())
 
 except Exception as e: 
   print(e)
