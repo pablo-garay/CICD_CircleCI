@@ -74,6 +74,10 @@ workflows:
       - hello-world-job
 
   test_my_python_app:
+    when:
+      or:
+      - equal: [ main, << pipeline.git.branch >> ]
+      - equal: [ staging, << pipeline.git.branch >> ]
     jobs:
       - build_and_test
       - deploy:
