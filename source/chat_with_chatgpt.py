@@ -20,5 +20,5 @@ try:
 
     print(response['choices'][0]['text'])
 
-  except Exception as e: 
-    print(e)
+except Exception as e: 
+  print(e)
