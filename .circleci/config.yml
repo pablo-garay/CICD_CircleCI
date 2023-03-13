@@ -73,7 +73,7 @@ jobs:
       - run:
           command: |
             echo "Digest is: $(</tmp/cicd-logs/digest.txt)"
-            ./chat_with_chatgpt.py > /tmp/cicd-logs/chatgpt_reponse.txt
+            /opt/workspace_pagaray/chat_with_chatgpt.py > /tmp/cicd-logs/chatgpt_reponse.txt
       - store_artifacts:
           path: /tmp/cicd-logs/digest.txt
           destination: artifact-digest-file
