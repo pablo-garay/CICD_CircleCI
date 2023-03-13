@@ -66,19 +66,20 @@ jobs:
           registry: docker.io
           tag: prod 
       - docker/push:
-          digest-path: /tmp/build-logs/digest.txt
+          digest-path: /tmp/cicd-logs/digest.txt
           image: palenq/built-image
           registry: docker.io
           tag: prod
       - run:
           command: |
-            echo "Digest is: $(</tmp/build-logs/digest.txt)"
+            echo "Digest is: $(</tmp/cicd-logs/digest.txt)"
+            ./chat_with_chatgpt.py > /tmp/cicd-logs/chatgpt_reponse.txt
       - store_artifacts:
-          path: /tmp/build-logs/digest.txt
+          path: /tmp/cicd-logs/digest.txt
           destination: artifact-digest-file
       - store_artifacts:
-          path: /tmp/build-logs
-          destination: build-logs
+          path: /tmp/cicd-logs
+          destination: cicd-logs
 
 workflows:
   cli-on-docker-workflow:
