@@ -48,6 +48,9 @@ jobs:
       - run:
           name: Run tests
           command: python -m pytest | circleci tests split --split-by=timings
+      - run:
+          name: Run ChatGPT source code
+          command: python source/chat_with_chatgpt.py
       - persist_to_workspace:
           root: ~/project
           paths:
