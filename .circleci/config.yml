@@ -50,7 +50,10 @@ jobs:
           command: python -m pytest | circleci tests split --split-by=timings
       - run:
           name: Run ChatGPT source code
-          command: python source/chat_with_chatgpt.py
+          command: python source/chat_with_chatgpt.py | tee chatgpt_response.txt
+      - store_artifacts:
+          path: chatgpt_response.txt
+          destination: chatgpt_response.txt
       - persist_to_workspace:
           root: ~/project
           paths:
@@ -76,9 +79,6 @@ jobs:
       - run:
           command: |
             echo "Digest is: $(</tmp/cicd-logs/digest.txt)"
-      - store_artifacts:
-          path: /tmp/cicd-logs/digest.txt
-          destination: artifact-digest-file
       - store_artifacts:
           path: /tmp/cicd-logs
           destination: cicd-logs
