@@ -5,7 +5,7 @@ orbs:
   docker: circleci/docker@2.2.0
 
 jobs:
-  hello-world-job:
+  paas-command-on-container-executing-job:
     docker:
       - image: cimg/node:17.2.0 # the primary container, where your job's commands are run
         auth:
@@ -13,7 +13,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout # check out the code in the project directory
-      - run: echo "hello world" # run the `echo` command
+      - run: echo "Your commands have been executed in the Cloud" # run the `echo` command
 
   build_and_test: # this can be any name you choose
     parallelism: 4
@@ -69,11 +69,11 @@ jobs:
           destination: build-logs
 
 workflows:
-  my-docker-workflow:
+  cli-on-docker-workflow:
     jobs:
-      - hello-world-job
+      - paas-command-on-container-executing-job
 
-  test_my_python_app:
+  python_app_on_container:
     when:
       or:
       - equal: [ main, << pipeline.git.branch >> ]
