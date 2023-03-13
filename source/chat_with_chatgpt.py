@@ -4,7 +4,7 @@ try:
   import openai
 
   openai.api_key = os.getenv("OPENAI_API_KEY")
-  gpt_prompt = "Correct this to standard English:\n\nShe no went to the market."
+  gpt_prompt = "Correct this to standard English:\n\nPablo no went to the store."
 
   response = openai.Completion.create(
     engine="text-davinci-002",
@@ -16,7 +16,8 @@ try:
     presence_penalty=0.0
   )
   
-  print(response['choices'][0]['text'])
+  print("Q: " + gpt_prompt)
+  print("A: " + response['choices'][0]['text'])
 
 except Exception as e: 
   print(e)
