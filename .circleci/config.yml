@@ -24,15 +24,27 @@ jobs:
             - &source-cache2 source-v2-{{ .Branch }}-{{ .Revision }}
             - source-v2-{{ .Branch }}-
             - source-v2-
-
+            # **restores saved dependency cache if the Branch key template or requirements.txt files have not changed since the previous run**
+            - &deps1-cache deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - checkout
 
       - save_cache:
+          name: Save source cache
           key: *source-cache2
           paths:
             - ".git"
       - python/install-packages:
           pkg-manager: pip
+      - run: # install and activate virtual environment with pip
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+      - save_cache: # ** special step to save dependency cache **
+          name: Save python virtual environment cache
+          key: *deps1-cache
+          paths:
+            - "venv"
       - run:
           name: Run tests
           command: python -m pytest | circleci tests split --split-by=timings
